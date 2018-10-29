@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  prometheus:
+    build: ./prometheus
+    ports:
+     - "9090:9090"
+  blackbox_exporter:
+    build: ./blackbox_exporter
+    ports:
+     - "9115:9115"
+  alertmanager:
+    build: ./alertmanager
+    ports:
+     - "9093:9093"
