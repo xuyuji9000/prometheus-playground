@@ -20,7 +20,7 @@ alerting:
   alertmanagers:
   - static_configs:
     - targets:
-      - docker.for.mac.localhost:9093
+      - alertmanager:9093
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
@@ -32,14 +32,14 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-      - targets: ['docker.for.mac.localhost:9090']
+      - targets: ['prometheus:9090']
 
-  - job_name: 'docker'
-         # metrics_path defaults to '/metrics'
-         # scheme defaults to 'http'.
+  # - job_name: 'docker'
+  #        # metrics_path defaults to '/metrics'
+  #        # scheme defaults to 'http'.
 
-    static_configs:
-      - targets: ['docker.for.mac.host.internal:9323']
+  #   static_configs:
+  #     - targets: ['docker.for.mac.host.internal:9323']
 
   - job_name: 'blackbox'
     metrics_path: /probe
@@ -48,7 +48,7 @@ scrape_configs:
       module: [http_2xx]  # Look for a HTTP 200 response.
     static_configs:
       - targets:
-        - https://www.baidu.com    # Target to probe with http.
+        - https://www.baiduddd.com    # Target to probe with http.
         # - https://prometheus.io   # Target to probe with https.
         # - http://example.com:8080 # Target to probe with http on port 8080.
     relabel_configs:
@@ -57,4 +57,4 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: docker.for.mac.host.internal:9115  # The blackbox exporter's real hostname:port.
+        replacement: blackbox_exporter:9115  # The blackbox exporter's real hostname:port.
