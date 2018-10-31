@@ -48,7 +48,7 @@ scrape_configs:
       module: [http_2xx]  # Look for a HTTP 200 response.
     static_configs:
       - targets:
-        - https://www.baiduddd.com    # Target to probe with http.
+        - http://www.coderbunker.com    # Target to probe with http.
         # - https://prometheus.io   # Target to probe with https.
         # - http://example.com:8080 # Target to probe with http on port 8080.
     relabel_configs:
