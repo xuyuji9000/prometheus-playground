@@ -1,5 +1,7 @@
 # prometheus-playground
 
+- Rebuild all the services: `docker-compose up -d --build`
+
 
 # Reference
 
