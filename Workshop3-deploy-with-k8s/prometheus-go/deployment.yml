@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-go
+  labels:
+    app: prometheus-go
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: prometheus-go
+  template:
+    metadata:
+      labels:
+        app: prometheus-go
+    spec:
+      containers:
+      - name: prometheus-go
+        image: yogiman/prometheus-go-service
+        ports:
+        - containerPort: 8080
