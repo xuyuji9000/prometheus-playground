@@ -1,0 +1,1 @@
+- Download the prometheus [binary](https://prometheus.io/download/)
