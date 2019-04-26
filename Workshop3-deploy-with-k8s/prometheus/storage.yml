@@ -1,0 +1,25 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: fast
+  annotations:
+    storageclass.beta.kubernetes.io/is-default-class: "true"
+  labels:
+    addonmanager.kubernetes.io/mode: EnsureExists
+
+provisioner: k8s.io/minikube-hostpath
+---
+apiVersion: "v1"
+kind: "PersistentVolume"
+metadata:
+  name: data-volume-1
+  namespace: monitoring
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: fast
+  hostPath:
+    path: /data/k8s
+---
