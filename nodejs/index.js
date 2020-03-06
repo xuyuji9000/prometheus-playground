@@ -4,9 +4,24 @@ const app = express()
 const Prometheus = require('prom-client')
 const metricsInterval = Prometheus.collectDefaultMetrics()
 
+const checkoutsTotal = new Prometheus.Counter({
+  name: 'checkouts_total',
+  help: 'Total number of checkouts',
+  labelNames: ['payment_method']
+})
 
 app.get('/', function(req, res) {
     res.send("Hello World")
+})
+
+app.get('/checkout', function(req, res) {
+  const paymentMethod = Math.round(Math.random()) === 0 ? 'stripe' : 'paypal'
+
+  checkoutsTotal.inc({
+    payment_method: paymentMethod
+  })
+
+  res.json({ status: 'ok' })
 })
 
 app.get('/metrics', (req, res) => {
