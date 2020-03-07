@@ -10,6 +10,8 @@ const checkoutsTotal = new Prometheus.Counter({
   labelNames: ['payment_method']
 })
 
+const gauge = new client.Gauge({ name: 'metric_name', help: 'metric_help' });
+
 app.get('/', function(req, res) {
     res.send("Hello World")
 })
@@ -21,6 +23,11 @@ app.get('/checkout', function(req, res) {
     payment_method: paymentMethod
   })
 
+  res.json({ status: 'ok' })
+})
+
+app.get('/gauge', function (req, res) {
+  gauge.set(true);
   res.json({ status: 'ok' })
 })
 
