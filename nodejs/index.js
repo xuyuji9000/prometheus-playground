@@ -27,7 +27,7 @@ app.get('/checkout', function(req, res) {
 })
 
 app.get('/gauge', function (req, res) {
-  gauge.set(true);
+  gauge.set(1);
   res.json({ status: 'ok' })
 })
 
